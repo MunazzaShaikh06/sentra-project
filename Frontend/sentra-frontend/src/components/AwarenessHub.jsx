@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { AdminAuthContext } from "../context/AdminAuthContext";
+import { AuthContext } from "../context/AuthContext";
 import "../pages/AwarenessHub.css";
 
 import antiRagging from "../assets/cllg2.jpg";
@@ -10,11 +11,22 @@ import discipline from "../assets/cllg4.jpg";
 
 function AwarenessHub() {
   const navigate = useNavigate();
-  const { logout } = useContext(AdminAuthContext);
+  const { adminToken } = useContext(AdminAuthContext);
+  const { user } = useContext(AuthContext);
 
-  const handleLogout = () => {
-    logout();
-    window.location.href = "/";
+  const handleDashboardClick = () => {
+    if (adminToken) {
+      navigate("/admin");
+    } 
+    else if (user?.role === "student") {
+      navigate("/student");
+    } 
+    else if (user?.role === "staff") {
+      navigate("/staff");
+    } 
+    else {
+      navigate("/");
+    }
   };
 
   return (
@@ -26,11 +38,8 @@ function AwarenessHub() {
           <h2>Sentra Awareness Hub</h2>
         </div>
         <div className="navbar-actions">
-          <button onClick={() => navigate("/")} className="nav-btn">
+          <button onClick={handleDashboardClick} className="nav-btn">
             Dashboard
-          </button>
-          <button onClick={handleLogout} className="logout-btn">
-            Logout
           </button>
         </div>
       </nav>
