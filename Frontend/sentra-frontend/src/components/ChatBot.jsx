@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from "react";
-import "../pages/Chatbot.css";
+import "../pages/ChatBot.css";
 
 export default function Chatbot() {
   const [open, setOpen] = useState(false);
@@ -24,7 +24,7 @@ export default function Chatbot() {
 
   try {
     const response = await fetch(
-      "http://localhost:5000/api/chatbot/chat",
+      `${import.meta.env.VITE_API_URL}/api/chatbot/chat`,
       {
         method: "POST",
         headers: {

@@ -17,13 +17,13 @@ export default function ContactAdmin() {
 
     emailjs
       .send(
-        "service_300623",
-        "template_vozc9zo",
+        "service_sentra",
+        "template_16lx52d",
         {
           name: name,
           message: message,
         },
-        "e_3uTVz-EOh5qQDxT"
+        "n-xcUk1sr-RLPxcv5"
       )
       .then(
         () => {

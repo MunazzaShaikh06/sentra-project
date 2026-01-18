@@ -3,7 +3,7 @@ import axios from "axios";
 import { AuthContext } from "../context/AuthContext";
 import SubmitIncident from "./SubmitIncident";
 import MyIncidents from "./MyIncidents";
-import "../pages/StudentDashboard.css";
+import "../pages/studentDashboard.css";
 
 export default function StudentDashboard() {
   const { authUser, logout, token } = useContext(AuthContext);
@@ -31,7 +31,7 @@ export default function StudentDashboard() {
     try {
       setSubmitting(true);
       await axios.post(
-        "http://localhost:5000/api/reviews/submit",
+        `${import.meta.env.VITE_API_URL}/api/reviews/submit`,
         { review: reviewText, rating },
         { 
           headers: { 
